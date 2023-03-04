@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  pg:
+    image: postgres:14.5
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+  scraper:
+    build:
+      context: ./tester
+      dockerfile: ../Dockerfile_scraper
+    volumes:
+      - ./logs:/logs
+    depends_on:
+      - pg
+    environment:
+      TZ: Europe/Berlin
+
+volumes:
+  pg_data:
