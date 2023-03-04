@@ -24,6 +24,7 @@ services:
       - pg
     environment:
       TZ: Europe/Berlin
+    restart: unless-stopped
 
 volumes:
   pg_data:
