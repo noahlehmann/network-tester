@@ -7,9 +7,6 @@ COPY . .
 RUN apk add build-base postgresql-dev
 RUN pip install -r requirements.txt
 
-RUN echo "*/10 * * * * python /app/main.py --docker >> log.txt" > crontab.txt
-RUN crontab crontab.txt
+ENV FLASK_APP=app
 
-CMD ["crond", "-f"]
-
-# flask run --host=0.0.0.0
+CMD ["python", "/app/app.py", "--docker"]

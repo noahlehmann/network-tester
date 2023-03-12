@@ -31,7 +31,7 @@ def check_docker_flag(argv):
     flag_set: bool = False
 
     try:
-        opts, args = getopt.getopt(argv,"hd:",["docker"])
+        opts, args = getopt.getopt(argv, "hd:", ["docker"])
         for opt, arg in opts:
             if opt in ("--docker", "-d"):
                 flag_set = True
@@ -44,8 +44,6 @@ def check_docker_flag(argv):
     return flag_set
 
 
-
-
 if __name__ == "__main__":
     docker_flag_set = check_docker_flag(sys.argv[1:])
     log_str = "%s [%s]:[%s] %s"
@@ -55,4 +53,3 @@ if __name__ == "__main__":
         print(log_str % (datetime.now(), "INFO", host, "Network Speed Test Successfully executed"))
     except Exception as e:
         print(log_str % (datetime.now(), "ERROR", host, str(e).replace("\n", "")))
-

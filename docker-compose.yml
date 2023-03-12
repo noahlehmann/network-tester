@@ -17,13 +17,23 @@ services:
   scraper:
     build:
       context: ./tester
-      dockerfile: ./Dockerfile
     volumes:
       - ./logs:/logs
     depends_on:
       - pg
     environment:
       TZ: Europe/Berlin
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./api
+    depends_on:
+      - pg
+    environment:
+      TZ: Europe/Berlin
+    ports:
+      - "5000:5000"
     restart: unless-stopped
 
 volumes:
