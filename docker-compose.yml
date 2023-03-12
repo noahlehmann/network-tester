@@ -17,7 +17,7 @@ services:
   scraper:
     build:
       context: ./tester
-      dockerfile: ../Dockerfile_scraper
+      dockerfile: ./Dockerfile
     volumes:
       - ./logs:/logs
     depends_on:
