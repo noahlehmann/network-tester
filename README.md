@@ -9,17 +9,17 @@ The database and python script are wrapped in docker containers, managed via doc
 ### Start
 
 ``` shell
-docker-compose up -d 
+docker compose up -d 
 ```
 
 ### Stop
 
 ``` shell
-docker-compose down
+docker compose down
 ```
 
 ### Reset the database
 
 ``` shell
-docker-compose down -v 
+docker compose down -v 
 ```
